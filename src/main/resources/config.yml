@@ -8,8 +8,3 @@
 #Permission Names:
 #lamp.toggle
 use-permissions: true
-
-#Determines which blocks can be toggled
-toggle-redstone-lamp: true
-toggle-redstone-torch: true
-toggle-copper-bulb: true

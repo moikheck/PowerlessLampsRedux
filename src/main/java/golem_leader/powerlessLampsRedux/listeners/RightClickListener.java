@@ -11,14 +11,11 @@ import golem_leader.powerlessLampsRedux.PowerlessLampsRedux;
 import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.Objects;
-import java.util.logging.Level;
 
 public class RightClickListener implements Listener {
     private final boolean usesPermissions;
-    private final PowerlessLampsRedux main;
 
     public RightClickListener(PowerlessLampsRedux plugin) {
-        main = plugin;
         Bukkit.getPluginManager().registerEvents(this, plugin);
         usesPermissions = Objects.equals(plugin.getConfig().getString("uses-permissions"), "true");
     }
@@ -26,12 +23,10 @@ public class RightClickListener implements Listener {
     @EventHandler
     public void onPlayerUse(PlayerInteractEvent event) {
         Player p = event.getPlayer();
-        main.getLogger().log(Level.INFO, p.toString());
         boolean isBlock = event.getAction().equals(Action.RIGHT_CLICK_BLOCK);
 
 
         if (event.getHand() == EquipmentSlot.OFF_HAND) {
-            main.getLogger().log(Level.INFO, "hand");
             return;
         }
         if (!isBlock || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
@@ -46,13 +41,19 @@ public class RightClickListener implements Listener {
         if (!p.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
             return;
         }
-        if (event.getClickedBlock().getBlockData().getMaterial() != Material.REDSTONE_TORCH &&
-                event.getClickedBlock().getBlockData().getMaterial() != Material.REDSTONE_LAMP &&
-                !event.getClickedBlock().getBlockData().getMaterial().name().contains("copper_bulb")) {
+        if (    event.getClickedBlock().getBlockData().getMaterial() != Material.REDSTONE_LAMP &&
+                event.getClickedBlock().getBlockData().getMaterial() != Material.COPPER_BULB &&
+                event.getClickedBlock().getBlockData().getMaterial() != Material.EXPOSED_COPPER_BULB &&
+                event.getClickedBlock().getBlockData().getMaterial() != Material.OXIDIZED_COPPER_BULB &&
+                event.getClickedBlock().getBlockData().getMaterial() != Material.WEATHERED_COPPER_BULB &&
+                event.getClickedBlock().getBlockData().getMaterial() != Material.WAXED_COPPER_BULB &&
+                event.getClickedBlock().getBlockData().getMaterial() != Material.WAXED_EXPOSED_COPPER_BULB &&
+                event.getClickedBlock().getBlockData().getMaterial() != Material.WAXED_OXIDIZED_COPPER_BULB &&
+                event.getClickedBlock().getBlockData().getMaterial() != Material.WAXED_WEATHERED_COPPER_BULB) {
             return;
         }
 
-        ToggleLamp.toggle(p, event.getClickedBlock(), main);
+        ToggleLamp.toggle(event.getClickedBlock());
 
     }
 }
