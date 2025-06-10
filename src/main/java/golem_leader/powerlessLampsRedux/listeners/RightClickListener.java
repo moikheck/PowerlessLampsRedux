@@ -14,9 +14,11 @@ import java.util.Objects;
 
 public class RightClickListener implements Listener {
     private final boolean usesPermissions;
+    PowerlessLampsRedux plugin;
 
     public RightClickListener(PowerlessLampsRedux plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
+        this.plugin = plugin;
         usesPermissions = Objects.equals(plugin.getConfig().getString("uses-permissions"), "true");
     }
 

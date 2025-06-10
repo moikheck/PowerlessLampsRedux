@@ -10,6 +10,7 @@ public final class PowerlessLampsRedux extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        this.saveDefaultConfig();
         registerListeners();
         getLogger().log(Level.INFO, "PowerlessLampsRedux plugin enabled.");
 

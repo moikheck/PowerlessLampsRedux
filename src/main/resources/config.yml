@@ -7,4 +7,4 @@
 #Determines whether permissions are used for the plugin
 #Permission Names:
 #lamp.toggle
-use-permissions: true
+uses-permissions: true
