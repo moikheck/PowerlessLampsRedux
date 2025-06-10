@@ -1,0 +1,17 @@
+name: PowerlessLampsRedux
+version: '1.0'
+main: golem_leader.powerlessLampsRedux.PowerlessLampsRedux
+api-version: '1.21'
+prefix: PowerlessLampsRedux
+authors: [moikheck, Golem_Leader]
+description: A recreation of the original, allowing for right-clicking a redstone lamp to turn it on without power.
+website: https://msheckman.com/powerlesslampsredux
+
+commands:
+  PowerlessLamps:
+    description: "Allows checking plugin information."
+
+permissions:
+  lamp.toggle:
+    default: false
+    description: "Basic permission for using the powerless lamps."
